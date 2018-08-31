@@ -5,19 +5,33 @@
 </ion-header>
 
 <ion-content padding>
-<span [ngStyle]="{'color': 'red', 'font-size': '20px'}"> {{beforeWord}}</span>
-<span [ngStyle]="{'color': 'blue', 'font-size': '24px'}"> {{word}}</span>
-<span [ngStyle]="{'color': 'red', 'font-size': '20px'}"> {{afterWord}}</span>
-<br>
-<button ion-button (click)="start()">START</button>
-<button ion-button (click)="stop()">STOP</button>
+
+  <div class="div3">
+      <span>
+      <div class="pre"> 
+{{beforeWord}}
+</div>
+<div class="current">
+    {{word}}
+</div>
+<div class="post">
+  {{afterWord}}
+</div>
+</span>
+</div>
 <ion-list>
+  <ion-item text-center>{{wpm}}wpm</ion-item>
   <ion-item>
-    {{inputSpeed}}
-    <ion-range  debounce="0" (ionChange)="changeSpeed()" min="60" max="1200" [(ngModel)]="inputSpeed" color="secondary">
-      <ion-label range-left>60</ion-label>
-      <ion-label range-right>1200</ion-label>
-    </ion-range>
+      <span>
+        <div class="div1">
+          <ion-icon name="arrow-dropleft" (click)="speeddown()"></ion-icon>
+        </div>
+        <div class="div2">
+          <ion-icon name="arrow-dropright" (click)="speedup()"></ion-icon>
+        </div>
+        </span>
   </ion-item>
+  <button ion-button (click)="start()">START</button>
+<button ion-button (click)="stop()">STOP</button>
 </ion-list>
 </ion-content>

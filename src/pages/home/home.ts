@@ -17,20 +17,24 @@ export class HomePage {
     public word: String;
     public afterWord: String;
     public wordCount: number;
-    public inputSpeed: number;
-    public running: any;
+    public wpm: number;
+    public speed: number;
+    public running: any
+
+
 
   constructor(public navCtrl: NavController, public http: Http) {
-    this.inputSpeed = 600;
+    this.speed = 200;
+    this.wpm = 300;
     this.wordCount = 0;
     this.loadBook();
   }
 
-  run(speed){
+  run(){
      this.running = setInterval(() => {  
         this.changeWords();
         console.log(this.wordCount);
-        }, speed);
+        }, this.speed);
       }
 
   stop(){
@@ -38,17 +42,23 @@ export class HomePage {
   }
 
   start(){
-    this.run(this.calcSpeed(this.inputSpeed));
+    this.run();
   }
 
-  changeSpeed(){
+  speedup(){
     this.stop();
-    this.start();
+    this.wpm += 60;
+    this.speed = (1000/(this.wpm/60));
+    this.run();
   }
 
-  calcSpeed(input){
-      return Math.round(((1-(input/60))+20)*50);
-  }
+  speeddown(){
+      this.stop();
+      this.wpm -= 60;
+      this.speed = (1000/(this.wpm/60));
+      this.run();
+    }
+  
 
   changeWords(){
     this.wordCount++;

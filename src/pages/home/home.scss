@@ -1,3 +1,47 @@
 page-home {
+    ion-icon {
+        font-size: 50px; 
+    }
 
+    .div1{
+        width: 49%;
+        float: left;
+        text-align: right;
+        padding-right: 5%;
+    }
+    .div2{
+        width: 49%;
+        float: right;
+        padding-left: 5%;
+    }
+
+    .div3{
+        max-width: 98%;
+        text-align: center;
+
+    }
+
+    .pre{
+        font-size: 24px;
+        color: rgb(184, 184, 184);
+        width: 33%;
+
+    }
+
+    .current{
+        font-size: 30px;
+        width: 50%;
+        width: 33%;
+
+    }
+
+    .post{
+        font-size: 24px;;
+        color:  rgb(184, 184, 184);
+        width: 33%;
+
+
+
+
+    }
 }
