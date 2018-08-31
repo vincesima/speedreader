@@ -17,31 +17,43 @@ export class HomePage {
     public word: String;
     public afterWord: String;
     public wordCount: number;
-    public running: boolean;
     public inputSpeed: number;
-    public timer: number;
-    public wpm: number;
+    public running: any;
 
   constructor(public navCtrl: NavController, public http: Http) {
+    this.inputSpeed = 600;
     this.wordCount = 0;
-    this.running = false;
-    this.inputSpeed = 100;
-
-
     this.loadBook();
   }
 
-  ngOnInit(){
-    setInterval(() => {      
-      this.calcSpeed(this.inputSpeed)
-    },50);
-    setInterval(() => {      
-      this.run()
-    },this.timer);
+  run(speed){
+     this.running = setInterval(() => {  
+        this.changeWords();
+        console.log(this.wordCount);
+        }, speed);
+      }
+
+  stop(){
+    clearInterval(this.running)
+  }
+
+  start(){
+    this.run(this.calcSpeed(this.inputSpeed));
+  }
+
+  changeSpeed(){
+    this.stop();
+    this.start();
   }
 
   calcSpeed(input){
-      return (1 - (.1*input))
+      return Math.round(((1-(input/60))+20)*50);
+  }
+
+  changeWords(){
+    this.wordCount++;
+    this.setWords(this.wordCount)
+
   }
 
   async setWords(starting){
@@ -56,24 +68,6 @@ export class HomePage {
     }
   }
 
-  runningToggle(){
-    if(this.running === true){
-      this.running = false;
-    } else this.running = true;
-
-  }
-
-  run(){
-    if(this.running === true){
-      this.changeWords();
-  }
-}
-
-  changeWords(){
-    this.wordCount++;
-    this.setWords(this.wordCount)
-    console.log(this.speed)
-  }
 
   async loadBook(){
     var book: String;

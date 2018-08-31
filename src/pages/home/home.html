@@ -9,11 +9,15 @@
 <span [ngStyle]="{'color': 'blue', 'font-size': '24px'}"> {{word}}</span>
 <span [ngStyle]="{'color': 'red', 'font-size': '20px'}"> {{afterWord}}</span>
 <br>
-<button ion-button (click)="runningToggle()">START</button>
+<button ion-button (click)="start()">START</button>
+<button ion-button (click)="stop()">STOP</button>
 <ion-list>
-<ion-item>
-  <ion-label>Speed {{wpm}}wpm</ion-label>
-  <ion-range min="100" max="1000" step="100" snaps="true" color="secondary" [(ngModel)]="inputSpeed"></ion-range>
-</ion-item>
+  <ion-item>
+    {{inputSpeed}}
+    <ion-range  debounce="0" (ionChange)="changeSpeed()" min="60" max="1200" [(ngModel)]="inputSpeed" color="secondary">
+      <ion-label range-left>60</ion-label>
+      <ion-label range-right>1200</ion-label>
+    </ion-range>
+  </ion-item>
 </ion-list>
 </ion-content>
