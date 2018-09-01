@@ -20,6 +20,8 @@ export class HomePage {
     public wpm: number;
     public speed: number;
     public running: any
+    public switch: boolean;
+    public buttonContent: String;
 
 
 
@@ -28,7 +30,22 @@ export class HomePage {
     this.wpm = 300;
     this.wordCount = 0;
     this.loadBook();
+    this.switch = false;
+    this.buttonContent = "START"
   }
+
+  toggle(){
+    if(this.switch === false){
+      this.run();
+      this.switch = true;
+      this.buttonContent = "STOP"
+    } else {
+      this.stop();
+      this.switch = false;
+      this.buttonContent = "START"
+    }
+  }
+
 
   run(){
      this.running = setInterval(() => {  
@@ -38,26 +55,27 @@ export class HomePage {
       }
 
   stop(){
-    clearInterval(this.running)
-  }
+    clearInterval(this.running);
 
-  start(){
-    this.run();
   }
 
   speedup(){
+    if(this.switch){
     this.stop();
     this.wpm += 60;
     this.speed = (1000/(this.wpm/60));
     this.run();
   }
+  }
 
   speeddown(){
+    if(this.switch){
       this.stop();
       this.wpm -= 60;
       this.speed = (1000/(this.wpm/60));
       this.run();
     }
+  }
   
 
   changeWords(){

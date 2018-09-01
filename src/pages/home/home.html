@@ -4,34 +4,40 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content text-center>
 
-  <div class="div3">
-      <span>
+  <div class="container">
+
       <div class="pre"> 
-{{beforeWord}}
-</div>
-<div class="current">
-    {{word}}
-</div>
-<div class="post">
-  {{afterWord}}
-</div>
-</span>
-</div>
-<ion-list>
-  <ion-item text-center>{{wpm}}wpm</ion-item>
-  <ion-item>
+        {{beforeWord}}
+      </div>
+
+      <div class="current" [ngStyle]="{'background-color': 'rgb(117, 117, 117)', 'color':'lime'}">
+        <span>{{word}}</span>
+        </div>
+      <div class="post">
+        {{afterWord}}
+      </div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+    <ion-col col-3 (click)="toggle()"  [ngStyle]="{'margin-top':'10px', 'margin-left':'10px'}">
+        <span [ngStyle]="{'font-weight':'bold', 'font-size':'22px'}">{{buttonContent}}</span>
+      </ion-col>
+
+    <ion-col col-5>
       <span>
-        <div class="div1">
-          <ion-icon name="arrow-dropleft" (click)="speeddown()"></ion-icon>
-        </div>
-        <div class="div2">
-          <ion-icon name="arrow-dropright" (click)="speedup()"></ion-icon>
-        </div>
+          <ion-icon name="arrow-dropleft" (click)="speeddown()" [ngStyle]="{'float':'left', 'padding-left':'12.5%'}"></ion-icon>
+          <ion-icon name="arrow-dropright" (click)="speedup() " [ngStyle]="{'float':'right', 'padding-right':'12.5%'}"></ion-icon>
         </span>
-  </ion-item>
-  <button ion-button (click)="start()">START</button>
-<button ion-button (click)="stop()">STOP</button>
-</ion-list>
+      </ion-col> 
+      
+      <ion-col col-3>
+          <span class="count">Count: {{wordCount}}</span>
+          <br>
+          <span class="wpm">{{wpm}}WPM</span>
+          </ion-col>
+        </ion-row>
+          </ion-grid>
 </ion-content>
